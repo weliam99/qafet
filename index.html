@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="ar" dir="rtl" __gcrremoteframetoken="7f59d38a03bef912ad49fdfc31895eac"><head><link rel="preload" href="_miniapp/i18n/manifest.json" as="fetch" type="application/json" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#101820">
+  <title>الفرسان ((قافطــ))</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="sectionAdmin.css">
+  <link rel="stylesheet" href="adminConsole.css">
+  <link rel="stylesheet" href="fieldOps.css">
+  <link rel="stylesheet" href="operationsEnhancements.css">
+  <link rel="stylesheet" href="dashcam.css">
+  <link rel="stylesheet" href="backupTools.css">
+  <link rel="stylesheet" href="qualityLayer.css">
+  <link rel="stylesheet" href="sessionGuard.css">
+  <link rel="stylesheet" href="x10Core.css">
+  <link rel="stylesheet" href="x20Core.css">
+  <link rel="stylesheet" href="x30Core.css">
+  <link rel="stylesheet" href="patrolMonitor.css">
+  <link rel="stylesheet" href="mapMonitor.css">
+</head>
+<body data-__gcrweb-annotatedpagecontent-processed="CDAD60A9EB8E12A54F1D52716A57D85D">
+  <div class="app-shell" id="appShell">
+    <section class="auth-screen" id="authScreen" hidden="">
+      <div class="auth-visual">
+        <div class="brand-mark large"><img src="https://alfursan.me/alfursan-first-photo-logo.png" alt="شعار الفرسان الأولى"></div>
+        <p class="eyebrow" data-i18n="brand.eyebrow">منصة الحضور والمتابعة الميدانية</p>
+        <h1 data-i18n="auth.title">مرحباً بك في الفرسان ((قافطــ))</h1>
+        <p class="auth-subtitle" data-i18n="auth.subtitle">إدارة حضور الأفراد والجولات والبلاغات من غرفة عمليات واحدة.</p>
+        <div class="security-orbit"><i></i><i></i><i></i><b>24<br><small>ساعة</small></b></div>
+      </div>
+      <div class="auth-panel">
+        <div class="mobile-brand"><div class="brand-mark"><img src="https://alfursan.me/alfursan-first-photo-logo-small.png" alt="شعار الفرسان الأولى"></div><span data-i18n="brand.name">الفرسان ((قافطــ))</span></div>
+        <form id="loginForm" class="auth-form" __gcruniqueid="1">
+          <div class="field"><label for="loginPhone" data-i18n="auth.phone">رقم الجوال</label><input id="loginPhone" inputmode="tel" autocomplete="tel" data-i18n-placeholder="auth.phonePlaceholder" required="" placeholder="05xxxxxxxx" __gcruniqueid="2"></div>
+          <div class="field"><label for="loginPassword" data-i18n="auth.password">كلمة المرور</label><input id="loginPassword" type="password" data-i18n-placeholder="auth.passwordPlaceholder" required="" placeholder="أدخل كلمة المرور" __gcruniqueid="3"></div>
+          <label class="check-row"><input id="rememberLogin" type="checkbox"><span data-i18n="auth.remember">تذكرني على هذا الجهاز</span></label>
+          <button class="btn btn-primary btn-wide" type="submit"><span data-i18n="auth.login">دخول آمن</span><span class="btn-arrow">←</span></button>
+          <button class="text-button" id="forgotPassword" type="button" data-i18n="auth.forgot">استعادة كلمة المرور عبر واتساب</button>
+          <button class="registration-link" id="openRegistration" type="button" data-i18n="auth.registerNew">تسجيل جديد</button>
+          <p class="form-error" id="loginError" role="alert" hidden=""></p>
+        </form>
+        <section class="registration-card" id="registrationPanel" hidden="" aria-labelledby="registrationTitle">
+          <div class="card-head"><div><div class="kicker" data-i18n="auth.registerNew">تسجيل جديد</div><h2 id="registrationTitle" data-i18n="auth.registerTitle">تسجيل فرد أو مشرف</h2></div><button class="icon-btn" id="closeRegistration" type="button" aria-label="إغلاق">×</button></div>
+          <p class="registration-hint" data-i18n="auth.registerHint">أنشئ حساب دخول للعمل الميداني. اختر نوع الحساب المناسب، ويمكن للإدارة استكمال بيانات التكليف لاحقاً.</p>
+          <form id="registrationForm" class="registration-form" data-bound="true" __gcruniqueid="4">
+            <div class="field"><label for="registrationName" data-i18n="auth.registerName">الاسم العربي الكامل</label><input id="registrationName" autocomplete="name" data-i18n-placeholder="auth.registerNamePlaceholder" required="" placeholder="مثال: محمد أحمد العتيبي" __gcruniqueid="5"></div>
+            <div class="field"><label for="registrationPhone" data-i18n="auth.registerPhone">رقم الجوال</label><input id="registrationPhone" dir="ltr" inputmode="tel" autocomplete="tel" data-i18n-placeholder="auth.phonePlaceholder" required="" placeholder="05xxxxxxxx" __gcruniqueid="6"></div>
+            <div class="field"><label for="registrationPassword" data-i18n="auth.registerPassword">كلمة المرور</label><input id="registrationPassword" type="password" autocomplete="new-password" data-i18n-placeholder="auth.registerPasswordPlaceholder" required="" placeholder="6 أحرف أو أرقام على الأقل" __gcruniqueid="7"></div>
+            <div class="field"><label for="registrationRole" data-i18n="auth.registerRole">نوع الحساب</label><select id="registrationRole" __gcruniqueid="8"><option value="guard" data-i18n="auth.guard">فرد ميداني</option><option value="supervisor" data-i18n="auth.supervisor">مشرف الميدان</option></select></div>
+            <button class="btn btn-primary btn-wide" type="submit" data-i18n="auth.registerSubmit">إنشاء الحساب</button>
+            <button class="text-button" id="cancelRegistration" type="button" data-i18n="auth.registerBack">العودة لتسجيل الدخول</button>
+            <p class="form-error" id="registrationError" role="alert" hidden=""></p>
+          </form>
+        </section>
+      </div>
+    </section>
+
+    <div class="maintenance-screen" id="maintenanceScreen" hidden=""><div class="maintenance-icon">◼</div><h2 data-i18n="common.maintenance">وضع الصيانة</h2><p data-i18n="messages.maintenanceOn">النظام مغلق للصيانة</p><button class="btn btn-ghost" id="maintenanceLogin" data-i18n="common.back">رجوع</button></div>
+    <section class="session-lock" id="sessionLock" hidden="" aria-hidden="true"><div class="session-lock-card" role="dialog" aria-modal="true" aria-labelledby="sessionLockTitle"><div class="session-lock-mark" aria-hidden="true">◈</div><h2 id="sessionLockTitle" data-i18n="session.title">تم قفل الجلسة مؤقتاً</h2><p id="sessionLockMessage"></p><form id="sessionLockForm" __gcruniqueid="9"><label for="sessionLockPassword" data-i18n="session.password">كلمة المرور</label><input id="sessionLockPassword" type="password" autocomplete="current-password" data-i18n-placeholder="session.passwordPlaceholder" required="" placeholder="أدخل كلمة مرور الحساب للمتابعة" __gcruniqueid="10"><p class="session-lock-error" id="sessionLockError" role="alert" hidden=""></p><button class="btn btn-primary" type="submit" data-i18n="session.unlock">فتح الشاشة</button></form></div></section>
+    <div class="session-lock-warning" id="sessionLockWarning" hidden="" role="status" aria-live="polite" data-i18n="session.warning">ستنتهي الجلسة قريباً بسبب عدم النشاط.</div>
+
+    <section class="workspace" id="workspace">
+      <aside class="sidebar" id="sidebar">
+        <div class="side-brand"><div class="brand-mark"><img src="https://alfursan.me/alfursan-first-photo-logo-small.png" alt="شعار الفرسان الأولى"></div><div><strong data-i18n="brand.name">الفرسان ((قافطــ))</strong><small data-i18n="brand.eyebrow">منصة الحضور والمتابعة الميدانية</small></div><button class="icon-btn sidebar-close" id="closeSidebar" aria-label="إغلاق القائمة">×</button></div>
+        <div class="current-user"><div class="avatar" id="userAvatar">م</div><div><strong id="userName"></strong><small id="userRole">فرد ميداني</small></div><span class="online-dot"></span></div>
+        <nav class="main-nav" aria-label="التنقل الرئيسي" id="mainNav">
+          <div class="nav-label" data-i18n="dashboard.title">مركز قيادة الميدان</div>
+          <button class="nav-item" data-view="overview"><span class="nav-icon">⌂</span><span data-i18n="nav.overview">نظرة عامة</span></button>
+          <button class="nav-item" data-view="map" hidden="" disabled=""><span class="nav-icon">⌖</span><span data-i18n="nav.map">الخريطة الحية</span><em class="nav-live" data-i18n="dashboard.live">مباشر</em></button>
+          <button class="nav-item" data-view="attendance"><span class="nav-icon">◷</span><span data-i18n="nav.attendance">الحضور والانصراف</span></button>
+          <button class="nav-item" data-view="patrols"><span class="nav-icon">✦</span><span data-i18n="nav.patrols">بوابة الجولات</span></button>
+          <button class="nav-item" data-view="dashcam"><span class="nav-icon">▣</span><span data-i18n="nav.dashcam">الداش كام</span><em class="nav-live" data-i18n="dashboard.live">مباشر</em></button>
+          <button class="nav-item supervisor-only" data-view="prep"><span class="nav-icon">▦</span><span data-i18n="nav.prep">التحضير اليومي</span></button>
+          <div class="nav-label second" data-i18n="nav.reports">البلاغات والتقارير</div>
+          <button class="nav-item" data-view="reports" hidden="" disabled=""><span class="nav-icon">!</span><span data-i18n="nav.reports">البلاغات والتقارير</span><b class="nav-count" id="reportCount">3</b></button>
+          <button class="nav-item" data-view="requests"><span class="nav-icon">↗</span><span data-i18n="nav.requests">الطلبات</span></button>
+          <button class="nav-item manager-only" data-view="people" hidden="" disabled=""><span class="nav-icon">♙</span><span data-i18n="nav.people">الأفراد والمشرفون</span></button>
+          <button class="nav-item manager-only active" data-view="archive" hidden="" disabled=""><span class="nav-icon">▤</span><span data-i18n="nav.archive">الأرشيف والنسخ</span></button>
+          <button class="nav-item manager-only" data-view="settings" hidden="" disabled=""><span class="nav-icon">⚙</span><span data-i18n="nav.settings">إعدادات النظام</span></button>
+        </nav>
+        <div class="side-footer"><button class="support-link" id="contactButton" data-i18n="common.contact">اتصل بنا</button><div class="system-status"><span class="online-dot"></span><span data-i18n="common.online">النظام متصل</span><small id="versionLabel">4.6.0</small></div><button class="logout-link" id="logoutButton" data-i18n="common.logout">تسجيل الخروج</button></div>
+      </aside>
+      <div class="main-area">
+        <header class="topbar"><button class="icon-btn menu-toggle" id="openSidebar" aria-label="فتح القائمة">☰</button><div class="topbar-title"><span class="crumb" data-i18n="brand.name">الفرسان ((قافطــ))</span><span class="crumb-sep">/</span><strong id="topbarViewTitle">الأرشيف والنسخ</strong></div><div class="topbar-actions"><button class="icon-btn notification-trigger" id="notificationButton" aria-label="التنبيهات">♧<b id="notificationDot" hidden=""></b></button><button class="user-chip" id="roleSwitch" aria-label="فرد ميداني"><span class="avatar small" id="topAvatar">م</span><span id="topUserName"></span><span class="chevron">⌄</span></button><div class="role-menu" id="roleMenu" hidden=""><button data-switch-role="admin" data-i18n="auth.admin">الإدارة</button><button data-switch-role="supervisor" data-i18n="auth.supervisor">مشرف الميدان</button><button data-switch-role="guard" data-i18n="auth.guard">فرد ميداني</button></div><button class="top-logout" id="topLogoutButton" type="button" data-i18n="common.logout">تسجيل الخروج</button></div></header>
+        <div class="system-health-bar" id="systemHealthBar" role="status" aria-live="polite"><span class="health-dot" id="systemHealthDot"></span><strong id="systemHealthText">النظام متصل</strong><small id="systemHealthDetail">آخر حفظ ناجح: ٠١:٤٢&nbsp;ص</small><span class="health-version" id="systemHealthVersion">4.6.0</span><button id="systemHealthRefresh" type="button" data-i18n="quality.refresh">فحص الحالة</button></div>
+        <main class="content" id="content">
+          <section class="view" id="view-overview" hidden=""><div class="card project-scope-card"><div><small>نطاق العرض</small><h3>كل المشاريع</h3></div><label class="project-switcher"><span>نطاق العرض</span><select id="projectScope" __gcruniqueid="15"><option value="__all__">كل المشاريع</option><option value="project-main" selected="">المشروع الرئيسي</option><option value="project-1792737783657">سبك</option></select></label></div><div class="view-header"><div><div class="kicker">منصة الحضور والمتابعة الميدانية</div><h1>مركز قيادة الميدان</h1><p>متابعة الحضور والجولات والتنبيهات لحظة بلحظة.</p></div><div class="header-actions"><button class="btn btn-secondary" data-go="map">⌖ فتح الخريطة</button></div></div><div class="notice-box ">مرحباً، الإدارة · اليوم</div><section class="leaderboards-top" aria-label="لوحة التميز"><article class="compact-leaderboard rounds-board"><div class="compact-board-head"><div><span class="compact-board-kicker">✦ جولات</span><h3>تميز الجولات</h3></div><span class="compact-board-mark">01</span></div><div class="compact-rank-list"></div></article><article class="compact-leaderboard vulnerability-board"><div class="compact-board-head"><div><span class="compact-board-kicker">⌖ ثغرات</span><h3>تميز مكتشفي الثغرات</h3></div><span class="compact-board-mark">01</span></div><div class="compact-rank-list"></div></article></section><div class="stats-grid"><div class="stat-card"><div class="stat-top"><span>أفراد على رأس العمل</span><span class="stat-icon">♙</span></div><div class="stat-value">0</div><div class="stat-foot good">نشط</div></div><div class="stat-card"><div class="stat-top"><span>جولات مكتملة اليوم</span><span class="stat-icon">✦</span></div><div class="stat-value">0</div><div class="stat-foot">نقاط اليوم</div></div><div class="stat-card"><div class="stat-top"><span>تغطية المواقع</span><span class="stat-icon">⌖</span></div><div class="stat-value">86%</div><div class="stat-foot good">+6% اليوم</div></div><div class="stat-card"><div class="stat-top"><span>بلاغات مفتوحة</span><span class="stat-icon">!</span></div><div class="stat-value">0</div><div class="stat-foot">تنبيهات تحتاج متابعة</div></div></div><div class="dashboard-grid"><div class="card map-card"><div class="card-head"><h3>الخريطة الحية</h3><a href="#" data-go="map">فتح ←</a></div><div class="map-panel"><div id="overviewMap" class="live-map leaflet-container leaflet-touch leaflet-retina leaflet-safari leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0" style="position: relative;"><div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(179px, 0px, 0px);"><div class="leaflet-pane leaflet-tile-pane"><div class="leaflet-layer " style="z-index: 1; opacity: 1;"><div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 18; transform: translate3d(0px, 0px, 0px) scale(1);"><img alt="" src="https://b.tile.openstreetmap.org/15/20632/14061.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-125px, 90px, 0px); opacity: 1;"><img alt="" src="https://a.tile.openstreetmap.org/15/20632/14060.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-125px, -166px, 0px); opacity: 1;"><img alt="" src="https://c.tile.openstreetmap.org/15/20632/14062.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-125px, 346px, 0px); opacity: 1;"><img alt="" src="https://a.tile.openstreetmap.org/15/20631/14061.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-381px, 90px, 0px); opacity: 1;"><img alt="" src="https://c.tile.openstreetmap.org/15/20633/14061.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(131px, 90px, 0px); opacity: 1;"><img alt="" src="https://c.tile.openstreetmap.org/15/20631/14060.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-381px, -166px, 0px); opacity: 1;"><img alt="" src="https://b.tile.openstreetmap.org/15/20633/14060.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(131px, -166px, 0px); opacity: 1;"><img alt="" src="https://b.tile.openstreetmap.org/15/20631/14062.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-381px, 346px, 0px); opacity: 1;"><img alt="" src="https://a.tile.openstreetmap.org/15/20633/14062.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(131px, 346px, 0px); opacity: 1;"></div></div></div><div class="leaflet-pane leaflet-overlay-pane"></div><div class="leaflet-pane leaflet-shadow-pane"></div><div class="leaflet-pane leaflet-marker-pane"></div><div class="leaflet-pane leaflet-tooltip-pane"></div><div class="leaflet-pane leaflet-popup-pane"></div><div class="leaflet-proxy leaflet-zoom-animated" style="transform: translate3d(5281917px, 3599701px, 0px) scale(16384);"></div></div><div class="leaflet-control-container"><div class="leaflet-top leaflet-left"></div><div class="leaflet-top leaflet-right"></div><div class="leaflet-bottom leaflet-left"><div class="leaflet-control-zoom leaflet-bar leaflet-control"><a class="leaflet-control-zoom-in" href="#" title="Zoom in" role="button" aria-label="Zoom in" aria-disabled="false"><span aria-hidden="true">+</span></a><a class="leaflet-control-zoom-out" href="#" title="Zoom out" role="button" aria-label="Zoom out" aria-disabled="false"><span aria-hidden="true">−</span></a></div></div><div class="leaflet-bottom leaflet-right"><div class="leaflet-control-attribution leaflet-control"><a href="https://leafletjs.com" title="A JavaScript library for interactive maps"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" class="leaflet-attribution-flag"><path fill="#4C7BE1" d="M0 0h12v4H0z"></path><path fill="#FFD500" d="M0 4h12v3H0z"></path><path fill="#E0BC00" d="M0 7h12v1H0z"></path></svg> Leaflet</a> <span aria-hidden="true">|</span> © OpenStreetMap</div></div></div></div><div class="map-legend"><div class="legend-row"><i class="legend-dot"></i>الموجودون الآن</div><div class="legend-row"><i class="legend-dot orange"></i>نطاقات العمل</div></div></div><div class="map-bottom"><span>● النظام متصل</span><span>آخر تحديث: ٠١:٤٢&nbsp;ص</span></div></div><div class="card"><div class="card-head"><h3>تنبيهات تحتاج متابعة</h3><a href="#" data-go="reports">فتح ←</a></div><div class="alert-list"></div><div class="card-head" style="margin-top:18px"><h3>آخر النشاطات</h3></div><div class="activity-list"><div class="activity"><i class="activity-dot"></i><div><p>تثبيت قرار التشغيل X30 · الإدارة</p><small>اليوم ٠١:٣٥&nbsp;ص</small></div></div><div class="activity"><i class="activity-dot"></i><div><p>audit.x30Assessment · الإدارة</p><small>اليوم ٠١:٣٥&nbsp;ص</small></div></div><div class="activity"><i class="activity-dot"></i><div><p>دخول للنظام · الإدارة</p><small>اليوم ٠١:٣٥&nbsp;ص</small></div></div></div></div></div><section class="card x10-command-card" id="x10CommandCard" aria-labelledby="x10CommandTitle" data-bound="true">
+    <div class="x10-command-head"><div><span class="section-kicker">X10 · مستوى التشغيل المتقدم</span><h3 id="x10CommandTitle">مركز سلامة وتشغيل النظام</h3><p>فحص سريع للبيانات والاتصال والحفظ قبل متابعة العمل الميداني.</p></div><span class="x10-seal">10×</span></div>
+    <div class="x10-metrics"><div><strong>2</strong><small>مستخدمون</small></div><div><strong>0</strong><small>مواقع</small></div><div><strong>0</strong><small>تحتاج متابعة</small></div><div><strong>13</strong><small>سجل تدقيق</small></div></div>
+    <div class="x10-status-row"><span class="pill good">سلامة البيانات جيدة</span><span class="x10-readiness is-good">الجاهزية: 100%</span><span class="x10-runtime" data-x10-online="">اتصال المنصة مستقر</span><span class="x10-runtime " data-x10-save="">٠١:٤٢&nbsp;ص</span><span class="x10-runtime ">التخزين يعمل بشكل مستقر</span><span class="x10-runtime">آخر فحص: ٠٨:٢٣&nbsp;م</span><span class="x10-runtime">الفحوصات: 3</span><span class="x10-runtime" data-x10-conflict=""></span><span class="x10-version">الإصدار 4.6.0</span></div>
+    <div class="x10-actions"><button type="button" class="btn btn-outline" id="x10Refresh">فحص الآن</button></div>
+  </section><section class="card x20-command-card" id="x20CommandCard" aria-labelledby="x20CommandTitle" data-bound="true">
+    <div class="x20-command-head"><div><span class="section-kicker">X20 · مركز القيادة الآمن</span><h3 id="x20CommandTitle">نظام الجاهزية X20</h3><p>قراءة موحّدة لسلامة البيانات واستمرارية الحفظ ومخاطر التشغيل قبل اتخاذ القرار.</p></div><div class="x20-emblem"><strong>20</strong><small>مستوى تشغيل</small></div></div>
+    <div class="x20-score-row"><div class="x20-score is-good"><strong>100%</strong><span>الجاهزية الكلية</span></div><div class="x20-flags"><strong>لا توجد مؤشرات حرجة حالياً</strong><small>بصمة الحالة: 7f07a9fc</small><small>نقطة تحقق: ٠٨:٢٣&nbsp;م</small></div></div>
+    <div class="x20-metrics"><div><strong>100%</strong><small>سلامة البيانات</small></div><div><strong>100%</strong><small>استمرارية الحفظ</small></div><div><strong>100%</strong><small>جاهزية الميدان</small></div><div><strong>100%</strong><small>تغطية المواقع</small></div></div>
+    <div class="x20-status-row"><span class="pill good">جاهز للتشغيل</span><span class="x20-detail">بلاغات مفتوحة: 0</span><span class="x20-detail">فحوصات X20: 3</span><span class="x20-detail">آخر فحص: ٠٨:٢٣&nbsp;م</span><span class="x20-detail">الإصدار 4.6.0</span></div>
+    <div class="x20-actions"><button type="button" class="btn btn-outline" id="x20Audit">تشغيل فحص X20</button><button type="button" class="btn btn-secondary" id="x20Checkpoint">إنشاء نقطة تحقق آمنة</button></div>
+  </section><section class="card x30-command-card" id="x30CommandCard" aria-labelledby="x30CommandTitle" data-bound="true">
+    <div class="x30-command-head"><div><span class="section-kicker">X30 · مركز السيطرة الاستباقية</span><h3 id="x30CommandTitle">لوحة القيادة X30</h3><p>تحويل إشارات التشغيل إلى أولوية واضحة وقرار قابل للمراجعة قبل توسع المخاطر.</p></div><div class="x30-emblem"><strong>30</strong><small>مستوى السيطرة</small></div></div>
+    <div class="x30-control-row"><div class="x30-control-score is-good"><strong>100%</strong><span>مؤشر السيطرة</span></div><div class="x30-priority"><span class="pill good">تشغيل مستقر</span><strong>لا توجد إشارة تستدعي التصعيد حالياً</strong><small>آخر قرار: ٠١:٣٥&nbsp;ص · قرارات محفوظة: 3</small></div></div>
+    <div class="x30-metrics"><div><strong>0</strong><small>إشارات حرجة</small></div><div><strong>0</strong><small>إجراءات معلقة</small></div><div><strong>100%</strong><small>تغطية المواقع</small></div><div><strong>0</strong><small>حمل المخاطر</small></div></div>
+    <div class="x30-status-row"><span class="x30-detail">ثقة البيانات: 100%</span><span class="x30-detail">استمرارية التشغيل: 100%</span><span class="x30-detail">بصمة القرار: 7f07a9fc-100-0</span><span class="x30-detail">آخر تقييم: ٠١:٣٥&nbsp;ص</span><span class="x30-detail">الإصدار 4.6.0</span></div>
+    <div class="x30-actions"><button type="button" class="btn btn-primary" id="x30Assess">تقييم السيطرة الآن</button><button type="button" class="btn btn-outline" id="x30Stabilize">تثبيت قرار التشغيل</button></div>
+  </section><section class="admin-control-center" aria-label="مركز التحكم الكامل">
+    <div class="card admin-center-head"><div><span class="section-kicker">لوحة الإدارة التشغيلية</span><h2>مركز التحكم الكامل</h2><p>كل أنظمة الميدان في شاشة واحدة مع وصول مباشر للإدارة والمالك.</p></div><span class="admin-center-badge">الإدارة</span></div>
+    <div class="admin-module-grid">
+      <button class="admin-module-card" type="button" data-admin-go="map"><span class="admin-module-icon">⌖</span><strong>نطاق المواقع</strong><small>0 أقسام</small></button>
+      <button class="admin-module-card" type="button" data-admin-go="map"><span class="admin-module-icon">◉</span><strong>التتبع المباشر</strong><small>0 أفراد نشطون</small></button>
+      <button class="admin-module-card" type="button" data-admin-go="settings"><span class="admin-module-icon">✦</span><strong>مسارات الدوريات</strong><small>0 مسارات</small></button>
+      <button class="admin-module-card" type="button" data-admin-go="reports"><span class="admin-module-icon">!</span><strong>البلاغات والتقارير</strong><small>0 مفتوح</small></button>
+      <button class="admin-module-card" type="button" data-admin-go="requests"><span class="admin-module-icon">⚠</span><strong>الإنذارات</strong><small>0 بانتظار التوقيع</small></button>
+      <button class="admin-module-card" type="button" data-admin-go="requests"><span class="admin-module-icon">✉</span><strong>رسالة جماعية</strong><small>0 رسائل مرسلة</small></button>
+      <button class="admin-module-card" type="button" data-admin-go="requests"><span class="admin-module-icon">◎</span><strong>آراء الفريق</strong><small>0 آراء منشورة</small></button>
+      <button class="admin-module-card" type="button" data-admin-go="patrols"><span class="admin-module-icon">★</span><strong>لوحة التميز</strong><small>تميز الجولات</small></button>
+    </div>
+    <div class="admin-center-columns">
+      <div class="card admin-broadcast-card"><div class="card-head"><div><h3>إرسال رسالة للجميع</h3><small>ستصل الرسالة كتنبيه محفوظ لكل المستخدمين المسجلين.</small></div><span class="pill dark">0 مستلمون</span></div><form id="broadcastForm" __gcruniqueid="13"><label class="sr-only" for="broadcastText">اكتب التوجيه أو الرسالة التشغيلية للجميع...</label><textarea id="broadcastText" rows="3" placeholder="اكتب التوجيه أو الرسالة التشغيلية للجميع..." required="" __gcruniqueid="14"></textarea><div class="header-actions"><button class="btn btn-primary" type="submit">إرسال للجميع</button><button class="btn btn-outline admin-action" type="button" data-admin-go="requests">↗ فتح الطلبات والإنذارات ←</button></div></form></div>
+      <div class="card admin-quick-card"><div class="card-head"><div><h3>الوصول السريع</h3><small>افتح النظام المطلوب مباشرة.</small></div></div><div class="admin-quick-actions"><button class="btn btn-outline admin-action" type="button" data-admin-go="patrols">✦ بوابة الجولات ←</button><button class="btn btn-outline admin-action" type="button" data-admin-go="map">⌖ نطاق المواقع ←</button><button class="btn btn-outline admin-action" type="button" data-admin-go="reports">! البلاغات والتقارير ←</button><button class="btn btn-outline admin-action" type="button" data-admin-go="settings">⚙ إدارة الأقسام والمواقع ←</button></div></div>
+    </div>
+    <div class="card admin-broadcast-history"><div class="card-head"><div><h3>سجل الرسائل الجماعية</h3><small>آخر الرسائل التي أرسلتها الإدارة.</small></div></div><div class="empty-state">لم تُرسل رسائل جماعية بعد</div></div>
+  </section></section>
+          <section class="view" id="view-map" hidden=""></section>
+          <section class="view" id="view-attendance" hidden=""></section>
+          <section class="view" id="view-patrols" hidden=""></section>
+          <section class="view" id="view-dashcam" hidden=""></section>
+          <section class="view" id="view-prep" hidden=""></section>
+          <section class="view" id="view-reports" hidden=""></section>
+          <section class="view" id="view-requests" hidden=""></section>
+          <section class="view" id="view-people" hidden=""></section>
+          <section class="view" id="view-archive"><div class="view-header"><div><div class="kicker">الأرشيف والنسخ</div><h1>الأرشيف والنسخ الاحتياطية</h1><p>أرشفة نهاية اليوم واحتفظ بنسخة تشغيلية قابلة للتحميل.</p></div></div><section class="archive-hero"><div><span class="archive-kicker">تسليم احترافي وآمن</span><h2>نسخة تشغيلية</h2><p>تحكم في أرشفة اليوم، أنشئ نسخة بيانات للاستعادة، أو نزّل حزمة الواجهة من داخل النظام دون روابط خارجية.</p></div><div class="archive-hero-meta"><span class="archive-status-badge good">النظام متصل</span><strong>الإصدار 4.6.0</strong></div></section><div class="archive-stat-grid"><div class="archive-stat"><span>أفراد على رأس العمل</span><strong>2</strong><small>2 سجلاً متاحاً</small></div><div class="archive-stat"><span>جولات مكتملة اليوم</span><strong>0</strong><small>0 جولة مكتملة</small></div><div class="archive-stat"><span>بلاغات مفتوحة</span><strong>0</strong><small>0 بلاغاً مفتوحاً</small></div><div class="archive-stat"><span>أرشيف الأيام</span><strong>0</strong><small>اليوم · 2026-10-23</small></div></div><div class="archive-layout"><div class="archive-primary-stack"><div class="card archive-control-card"><div class="card-head"><div><h3>أرشيف الأيام</h3><small>أرشفة نهاية اليوم واحتفظ بنسخة تشغيلية قابلة للتحميل.</small></div><span class="pill">2026-10-23</span></div><div class="notice-box">تأكد من اكتمال متابعة اليوم قبل بدء دورة تشغيل جديدة. ستُحفظ عملية الأرشفة في سجل التدقيق.</div><button class="btn btn-primary" id="archiveDay">أرشفة اليوم وبدء يوم جديد</button></div><div class="card archive-control-card archive-export-card"><div class="card-head"><div><h3>نسخة احتياطية</h3><small>تُستبعد كلمات المرور والمفاتيح والرموز السرية من الملف المصدّر، وتتم الاستعادة بأمان من داخل النظام.</small></div><span class="archive-card-mark">ZIP</span></div><div class="archive-note"><strong>تسليم احترافي وآمن</strong><span>حزمة ملفات الواجهة الحالية بعد تنقية كلمات المرور والمفاتيح وبيانات التشغيل الحساسة.</span></div><p class="backup-hint">تُستبعد كلمات المرور والمفاتيح والرموز السرية من الملف المصدّر، وتتم الاستعادة بأمان من داخل النظام.</p><div class="backup-actions-inline"><button class="btn btn-secondary" id="downloadBackup" type="button" disabled="">إنشاء نسخة احتياطية</button><label class="btn btn-outline backup-file-label" for="restoreBackupFile">اختيار ملف JSON<input id="restoreBackupFile" type="file" accept="application/json,.json"></label><button class="btn btn-outline" id="restoreBackup" type="button" disabled="">استعادة نسخة</button><button class="btn btn-outline" id="downloadInterfaceArchive" type="button" disabled="">حزمة الواجهة الآمنة</button></div><small class="backup-file-status" id="backupFileStatus" aria-live="polite">جارٍ التحميل... · index.html</small></div></div><div class="archive-secondary-stack"><div class="card archive-control-card"><div class="card-head"><div><h3>تحويل الصور إلى PDF</h3><small>اختر أكثر من 40 صورة عند الحاجة لإنشاء ملف PDF واحد.</small></div><span class="archive-card-mark">PDF</span></div><div class="file-drop"><span>اختيار الصور</span><input id="pdfImages" type="file" accept="image/*" multiple=""></div><button class="btn btn-secondary btn-wide" id="makePdf">تحويل وتحميل PDF</button></div><div class="card archive-control-card"><div class="card-head"><div><h3>إدارة الصيانة</h3><small>أغلق الدخول مؤقتاً أثناء تحديث النظام.</small></div><label><input id="maintenanceToggle" class="toggle" type="checkbox" checked=""></label></div><div class="archive-maintenance-state is-on"><span></span><strong>وضع الصيانة</strong><small>النظام مغلق للصيانة</small></div></div></div></div></section>
+          <section class="view" id="view-settings" hidden=""></section>
+        </main>
+        <footer class="app-footer"><div class="footer-owner"><span data-i18n="common.owner">الملكية الفكرية لـ</span> <strong data-i18n="common.ownerName">فيصل التيماني</strong></div><span class="footer-separator">•</span><div><span data-i18n="common.version">الإصدار</span> <strong id="footerVersion">4.6.0</strong></div><div class="footer-contact"><span data-i18n="common.contact">اتصل بنا</span><a class="footer-contact-link" href="tel:[CONTACT_REDACTED]"><span data-i18n="common.call">اتصال</span> <bdi>[CONTACT_REDACTED]</bdi></a><a class="footer-contact-link whatsapp-link" href="https://api.whatsapp.com/send?phone=[CONTACT_REDACTED]" target="_blank" rel="noopener noreferrer"><span data-i18n="common.whatsapp">واتساب</span> <bdi>[CONTACT_REDACTED]</bdi></a></div><a class="footer-contact-link" id="footerBackupLink" href="#archive"><span data-i18n="archive.backup">نسخة احتياطية</span></a></footer>
+      </div>
+    </section>
+    <div class="toast" id="toast" role="status" aria-live="polite">اسمح بالوصول إلى الموقع لتسجيل الإجراء</div>
+    <div class="notifications-panel" id="notificationsPanel" hidden=""><div class="panel-head"><strong data-i18n="notifications.title">التنبيهات</strong><button class="icon-btn" id="closeNotifications">×</button></div><div id="notificationsList"><div class="empty-state">لا توجد تنبيهات جديدة</div></div><button class="text-button" id="markNotifications" data-i18n="notifications.read">تحديد الكل كمقروء</button></div>
+    <div class="assistant-widget" id="assistantWidget"><button class="assistant-fab" id="assistantToggle" aria-label="المساعد الذكي">✦</button><div class="assistant-panel" id="assistantPanel" hidden=""><div class="assistant-head"><div><strong data-i18n="assistant.title">مساعد الفرسان الذكي</strong><small data-i18n="assistant.subtitle">اسأل عن الإجراءات أو حالة العمليات.</small></div><button class="icon-btn" id="closeAssistant">×</button></div><div class="assistant-messages" id="assistantMessages"><div class="chat-bubble ai">مرحباً، اسألني عن إدارة الجولات والحضور والبلاغات.</div></div><form class="assistant-form" id="assistantForm" data-bound="true" __gcruniqueid="11"><input id="assistantInput" data-i18n-placeholder="assistant.placeholder" placeholder="اكتب سؤالك هنا..." __gcruniqueid="12"><button type="submit" data-i18n="assistant.ask">إرسال السؤال</button></form></div></div>
+  </div>
+  
+<script>
+(function() {
+  'use strict';
+
+  // Prevent double-initialization
+  if (window.__miniappPreviewInstrumented) return;
+  window.__miniappPreviewInstrumented = true;
+
+  var MAX_MESSAGE_LENGTH = 2000;
+  var MAX_MESSAGES_PER_ENTRY = 10;
+  var MAX_BUFFER_ENTRIES = 500;
+
+  function generateSessionId() {
+    try {
+      if (window.crypto && window.crypto.getRandomValues) {
+        var bytes = new Uint8Array(16);
+        window.crypto.getRandomValues(bytes);
+        var hex = '';
+        for (var i = 0; i < bytes.length; i++) {
+          var h = bytes[i].toString(16);
+          if (h.length === 1) h = '0' + h;
+          hex += h;
+        }
+        return hex;
+      }
+    } catch (e) {}
+    return String(Date.now()) + '-' + Math.random().toString(16).slice(2);
+  }
+
+  var sessionId = generateSessionId();
+  var seq = 0;
+  var buffer = [];
+  // Set when signalReady() fires; null until then. Ships in the backlog
+  // snapshot so the builder can tell a booted app from a dead shell.
+  var readyAt = null;
+
+  // Boot snapshot computed at backlog-request time: visible text volume and
+  // interactive element count are the hardened boot criteria (an app with a
+  // silent console but ~0 text and 0 interactive elements is a broken shell).
+  function computeSnapshot() {
+    try {
+      return {
+        bodyTextChars: (document.body ? document.body.innerText.trim().length : 0),
+        interactiveCount: document.querySelectorAll('button, a[href], input, select, textarea, [role="button"]').length,
+        readyAt: readyAt
+      };
+    } catch (e) {
+      return { bodyTextChars: 0, interactiveCount: 0, readyAt: readyAt };
+    }
+  }
+
+  function clampBuffer() {
+    if (buffer.length > MAX_BUFFER_ENTRIES) {
+      buffer.splice(0, buffer.length - MAX_BUFFER_ENTRIES);
+    }
+  }
+
+  // Helper to safely stringify and truncate messages
+  function safeStringify(val) {
+    if (val === null) return 'null';
+    if (val === undefined) return 'undefined';
+    if (typeof val === 'string') {
+      return val.length > MAX_MESSAGE_LENGTH
+        ? val.slice(0, MAX_MESSAGE_LENGTH) + '...'
+        : val;
+    }
+    if (typeof val === 'number' || typeof val === 'boolean') {
+      return String(val);
+    }
+    if (val instanceof Error) {
+      return val.stack || val.message || String(val);
+    }
+    try {
+      var str = JSON.stringify(val, null, 2);
+      return str.length > MAX_MESSAGE_LENGTH
+        ? str.slice(0, MAX_MESSAGE_LENGTH) + '...'
+        : str;
+    } catch (e) {
+      try {
+        return String(val);
+      } catch (e2) {
+        return '[Unserializable]';
+      }
+    }
+  }
+
+  function postToParent(payload, targetOrigin) {
+    if (!window.parent || window.parent === window) return;
+    try {
+      window.parent.postMessage(payload, targetOrigin || '*');
+    } catch (e) {
+      // Silently ignore postMessage errors
+    }
+  }
+
+  function record(level, messages, meta) {
+    seq += 1;
+    var entry = {
+      type: 'miniapp-console',
+      sessionId: sessionId,
+      seq: seq,
+      level: level,
+      messages: messages,
+      ts: Date.now()
+    };
+    if (meta && typeof meta === 'object') {
+      entry.meta = meta;
+    }
+    buffer.push(entry);
+    clampBuffer();
+    postToParent(entry, '*');
+  }
+
+  function recordArgs(level, args, meta) {
+    var messages = [];
+    var len = Math.min(args.length, MAX_MESSAGES_PER_ENTRY);
+    for (var i = 0; i < len; i++) {
+      messages.push(safeStringify(args[i]));
+    }
+    if (args.length > MAX_MESSAGES_PER_ENTRY) {
+      messages.push('... and ' + (args.length - MAX_MESSAGES_PER_ENTRY) + ' more');
+    }
+    record(level, messages, meta);
+  }
+
+  // Save original console methods
+  var origLog = console.log;
+  var origWarn = console.warn;
+  var origError = console.error;
+
+  // Override console methods
+  console.log = function() {
+    recordArgs('log', arguments);
+    return origLog.apply(console, arguments);
+  };
+
+  console.warn = function() {
+    recordArgs('warn', arguments);
+    return origWarn.apply(console, arguments);
+  };
+
+  console.error = function() {
+    recordArgs('error', arguments);
+    return origError.apply(console, arguments);
+  };
+
+  function formatResourceTarget(target) {
+    try {
+      if (!target) return null;
+      var tag = (target.tagName || '').toString().toLowerCase();
+      var url = '';
+      if (tag === 'script') url = target.src || '';
+      else if (tag === 'link') url = target.href || '';
+      else if (tag === 'img') url = target.src || '';
+      else if (tag === 'audio' || tag === 'video') url = target.src || '';
+      else url = target.src || target.href || '';
+      return { tag: tag || 'unknown', url: url || '' };
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function onCaptureError(event) {
+    try {
+      // Resource load errors: event.target is the element that failed to load.
+      if (event && event.target && event.target !== window) {
+        var info = formatResourceTarget(event.target);
+        if (info) {
+          record(
+            'error',
+            ['Resource failed to load: ' + info.tag + ' ' + info.url],
+            { kind: 'resource-error', tag: info.tag, url: info.url }
+          );
+          return;
+        }
+      }
+
+      // Some browsers also deliver ErrorEvent objects here.
+      if (event && typeof event.message === 'string') {
+        var message = event.message || 'Unknown error';
+        var source = event.filename || '';
+        var line = event.lineno || 0;
+        var col = event.colno || 0;
+        var stack = event.error && event.error.stack ? event.error.stack : '';
+
+        var errorMsg = message;
+        if (source) {
+          errorMsg += ' at ' + source;
+          if (line) {
+            errorMsg += ':' + line;
+            if (col) errorMsg += ':' + col;
+          }
+        }
+        if (stack && errorMsg.indexOf(stack) === -1) {
+          errorMsg += '\n' + stack;
+        }
+
+        record('error', [errorMsg], {
+          kind: 'js-error-event',
+          filename: source,
+          lineno: line,
+          colno: col
+        });
+      }
+    } catch (e) {
+      // ignore
+    }
+  }
+
+  // Capture resource load errors (and some JS errors) in capture phase.
+  window.addEventListener('error', onCaptureError, true);
+
+  // Capture unhandled promise rejections
+  window.addEventListener('unhandledrejection', function(event) {
+    var reason = event.reason;
+    var message = 'Unhandled Promise Rejection: ';
+
+    if (reason instanceof Error) {
+      message += reason.stack || reason.message || String(reason);
+    } else {
+      message += safeStringify(reason);
+    }
+
+    record('error', [message], { kind: 'unhandledrejection' });
+  });
+
+  // Capture CSP violations when supported (JS-only)
+  try {
+    document.addEventListener('securitypolicyviolation', function(event) {
+      try {
+        var violated = event.violatedDirective || event.effectiveDirective || '';
+        var blocked = event.blockedURI || '';
+        var srcFile = event.sourceFile || '';
+        var line = event.lineNumber || 0;
+        var col = event.columnNumber || 0;
+        var sample = event.sample || '';
+        var msg = 'CSP Violation: ' + violated;
+        if (blocked) msg += ' blocked=' + blocked;
+        if (srcFile) {
+          msg += ' at ' + srcFile;
+          if (line) {
+            msg += ':' + line;
+            if (col) msg += ':' + col;
+          }
+        }
+        if (sample) msg += ' sample=' + sample;
+
+        record('error', [msg], {
+          kind: 'csp-violation',
+          violatedDirective: violated,
+          blockedURI: blocked,
+          sourceFile: srcFile,
+          lineNumber: line,
+          columnNumber: col,
+          disposition: event.disposition || ''
+        });
+      } catch (e) {}
+    });
+  } catch (e) {}
+
+  // Worker / SharedWorker error capture (best-effort)
+  function attachWorkerListeners(workerLike, scriptUrl, workerKind) {
+    if (!workerLike || !workerLike.addEventListener) return;
+    try {
+      workerLike.addEventListener('error', function(ev) {
+        try {
+          var msg = ev && ev.message ? String(ev.message) : 'Worker error';
+          var file = ev && ev.filename ? String(ev.filename) : '';
+          var line = ev && ev.lineno ? Number(ev.lineno) : 0;
+          var col = ev && ev.colno ? Number(ev.colno) : 0;
+          var stack = ev && ev.error && ev.error.stack ? String(ev.error.stack) : '';
+
+          var combined = msg;
+          if (file) {
+            combined += ' at ' + file;
+            if (line) {
+              combined += ':' + line;
+              if (col) combined += ':' + col;
+            }
+          }
+          if (stack && combined.indexOf(stack) === -1) {
+            combined += '\n' + stack;
+          }
+
+          record('error', [combined], {
+            kind: 'worker-error',
+            workerKind: workerKind,
+            scriptUrl: scriptUrl || ''
+          });
+        } catch (e) {}
+      });
+
+      workerLike.addEventListener('messageerror', function() {
+        record('error', ['Worker messageerror'], {
+          kind: 'worker-messageerror',
+          workerKind: workerKind,
+          scriptUrl: scriptUrl || ''
+        });
+      });
+    } catch (e) {}
+  }
+
+  var patchedWorkers = { worker: false, sharedworker: false };
+
+  function patchWorkerConstructor(name) {
+    try {
+      if (name === 'Worker' && patchedWorkers.worker) return;
+      if (name === 'SharedWorker' && patchedWorkers.sharedworker) return;
+
+      var Original = window[name];
+      if (typeof Original !== 'function') return;
+
+      function Patched(scriptURL, options) {
+        var instance = new Original(scriptURL, options);
+        try {
+          if (name === 'SharedWorker') {
+            attachWorkerListeners(instance, scriptURL, 'sharedworker');
+            if (instance.port) {
+              attachWorkerListeners(instance.port, scriptURL, 'sharedworker-port');
+            }
+          } else {
+            attachWorkerListeners(instance, scriptURL, 'worker');
+          }
+        } catch (e) {}
+        return instance;
+      }
+
+      Patched.prototype = Original.prototype;
+      try {
+        Object.setPrototypeOf(Patched, Original);
+      } catch (e) {}
+
+      window[name] = Patched;
+
+      if (name === 'Worker') patchedWorkers.worker = true;
+      if (name === 'SharedWorker') patchedWorkers.sharedworker = true;
+    } catch (e) {}
+  }
+
+  patchWorkerConstructor('Worker');
+  patchWorkerConstructor('SharedWorker');
+
+  // Handle screenshot requests from parent
+  var html2canvasPromise = null;
+
+  function ensureHtml2Canvas() {
+    if (typeof html2canvas === 'function') {
+      return Promise.resolve(html2canvas);
+    }
+    if (html2canvasPromise) return html2canvasPromise;
+
+    html2canvasPromise = new Promise(function(resolve, reject) {
+      try {
+        var script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
+        script.async = true;
+        script.onload = function() {
+          if (typeof html2canvas === 'function') {
+            resolve(html2canvas);
+          } else {
+            reject(new Error('html2canvas loaded but not available'));
+          }
+        };
+        script.onerror = function() {
+          reject(new Error('Failed to load html2canvas'));
+        };
+        (document.head || document.documentElement || document.body).appendChild(script);
+      } catch (e) {
+        reject(e);
+      }
+    });
+
+    return html2canvasPromise;
+  }
+
+  window.addEventListener('message', function(event) {
+    // Only respond to parent window
+    if (event.source !== window.parent) return;
+
+    if (event.data && event.data.type === 'miniapp-parent-request-backlog') {
+      try {
+        postToParent({
+          type: 'miniapp-console-backlog',
+          sessionId: sessionId,
+          lastSeq: seq,
+          entries: buffer.slice(0),
+          snapshot: computeSnapshot(),
+          ts: Date.now()
+        }, event.origin || '*');
+      } catch (e) {}
+      return;
+    }
+
+    if (!event.data || event.data.type !== 'request-miniapp-screenshot') return;
+
+    // Check if html2canvas is available
+    // Capture screenshot
+    ensureHtml2Canvas()
+      .then(function() {
+        return html2canvas(document.body, {
+          useCORS: true,
+          allowTaint: true,
+          scale: window.devicePixelRatio || 1,
+          logging: false,
+          backgroundColor: null
+        });
+      })
+      .then(function(canvas) {
+        var dataUrl = canvas.toDataURL('image/png');
+        try {
+          event.source.postMessage({
+            type: 'miniapp-screenshot',
+            imageDataUrl: dataUrl,
+            ts: Date.now()
+          }, event.origin || '*');
+        } catch (e) {
+          try {
+            event.source.postMessage({
+              type: 'miniapp-screenshot-error',
+              error: 'Failed to send screenshot: ' + String(e)
+            }, event.origin || '*');
+          } catch (e2) {}
+        }
+      })
+      .catch(function(err) {
+        try {
+          event.source.postMessage({
+            type: 'miniapp-screenshot-error',
+            error: String(err)
+          }, event.origin || '*');
+        } catch (e) {}
+      });
+  });
+
+  // Signal that the preview is ready
+  function signalReady() {
+    try {
+      readyAt = Math.round(performance.now());
+    } catch (e) {}
+    if (!window.parent || window.parent === window) return;
+    try {
+      window.parent.postMessage({
+        type: 'miniapp-preview-ready',
+        sessionId: sessionId,
+        ts: Date.now()
+      }, '*');
+    } catch (e) {}
+  }
+
+  // Signal ready on DOMContentLoaded or immediately if already loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', signalReady);
+  } else {
+    // DOM already loaded, signal ready after a small delay to ensure scripts have run
+    setTimeout(signalReady, 100);
+  }
+})();
+</script><script src="https://miniapps.ai/sdk/miniapps-ai-v1.js"></script><script src="https://miniapps.ai/sdk/miniapp-i18n-v1.js"></script><script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script type="module" src="main.js"></script>
+
+</body></html>

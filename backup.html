@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نسخة احتياطية - الفرسان ((قافطــ))</title>
+  <link rel="stylesheet" href="backup.css">
+</head>
+<body>
+  <main class="backup-shell">
+    <section class="backup-card" aria-labelledby="backupTitle">
+      <div class="backup-mark" aria-hidden="true">↧</div>
+      <p class="backup-kicker">الفرسان ((قافطــ))</p>
+      <h1 id="backupTitle">تنزيل نسخة احتياطية</h1>
+      <p class="backup-copy">يمكنك تنزيل ملفات المشروع عند السماح بذلك، أو حفظ بيانات التشغيل في ملف مستقل لاستعادتها لاحقاً.</p>
+      <div class="backup-notice">هذه الصفحة مخصصة لملفات المشروع. بيانات التشغيل تُصدّر وتُستعاد من شاشة الأرشيف داخل النظام لأن تخزين المنصة لا يتاح في الصفحة المستقلة.</div>
+      <div class="preview-links" aria-labelledby="previewLinksTitle">
+        <strong id="previewLinksTitle">روابط المعاينة المباشرة</strong>
+        <div class="preview-link-grid">
+          <a class="preview-link" href="./index.html#overview" target="_blank" rel="noopener">لوحة التحكم</a>
+          <a class="preview-link" href="./index.html#patrols" target="_blank" rel="noopener">صفحة الجولات والكاميرا</a>
+        </div>
+        <small>تفتح الروابط نسخة النظام المنشورة نفسها، وليست صفحة البناء. يلزم تسجيل الدخول إذا انتهت الجلسة.</small>
+      </div>
+      <ul class="file-list" id="fileList" aria-label="ملفات النسخة الاحتياطية"></ul>
+      <div class="backup-actions">
+        <button class="backup-button backup-button-safe" id="downloadInterfaceArchive" type="button">تنزيل ZIP الواجهة الآمنة</button>
+        <button class="backup-button backup-button-safe" id="downloadIndexSource" type="button">تنزيل index.html منفرداً</button>
+        <button class="backup-button" id="downloadBackup" type="button">تنزيل ZIP للمشروع المنقّى</button>
+        <button class="backup-button backup-button-secondary" id="downloadDataBackup" type="button">تنزيل بيانات التشغيل JSON</button>
+      </div>
+      <div class="restore-box">
+        <label for="restoreDataFile">استعادة بيانات التشغيل من ملف JSON</label>
+        <input id="restoreDataFile" type="file" accept="application/json,.json">
+        <button class="backup-button backup-button-restore" id="restoreDataBackup" type="button">استعادة البيانات المختارة</button>
+      </div>
+      <p class="backup-status" id="backupStatus" role="status" aria-live="polite">جاهز لإنشاء النسخة الاحتياطية.</p>
+      <a class="back-link" href="./index.html">العودة إلى النظام</a>
+    </section>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="./backup.js?rev=20261023-20"></script>
+</body>
+</html>

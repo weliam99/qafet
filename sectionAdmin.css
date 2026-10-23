@@ -1,0 +1,9 @@
+.section-manager-card{margin-top:18px;border-right:4px solid var(--orange)}
+.section-manager-card .card-head small{display:block;color:var(--muted);font-size:10px;line-height:1.7;margin-top:4px}
+.section-list{display:flex;flex-direction:column;gap:8px;margin-top:18px}
+.section-row{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--line);border-radius:11px;background:var(--surface)}
+.section-row>div{display:flex;flex-direction:column;gap:3px;min-width:0;margin-left:auto}
+.section-row strong{font-size:12px}
+.section-row small{font:10px var(--display);color:var(--muted);direction:ltr}
+.section-row .btn{min-height:36px;padding:0 11px;font-size:10px}
+@media(max-width:760px){.section-row{flex-wrap:wrap}.section-row .pill{order:3}.section-row .btn{width:100%}}
